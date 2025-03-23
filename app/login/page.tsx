@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useState, useMemo, memo  } from "react";
 import { useRouter } from 'next/navigation';
 import { useAuth } from "../context/AuthContext";
 
@@ -8,27 +8,38 @@ export default function Page(){
  const [email,setEmail] = useState('')
  const [password,setPassword] = useState('');
  const [isTouched,setIsTouched] = useState(false);
+ const [error,setError] = useState('');
 
- const router = useRouter();
-  const { login  } = useAuth() 
+  const router = useRouter();
+  const { login } = useAuth() 
  
 
- const PasswordErr =()=>{
-  return(
-     <p className="text-white bg-red-300 rounded-xl justify-center p-1"> password must be 8 character or above</p>
-  )
- };
+  const validateForm = useMemo(() => {
+    if (!email || !password) {
+      setError("All fields are required.");
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Invalid email format.");
+      return false;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return false;
+    }
+    setError('');
+    return true;
+  }, [email, password]);
 
- const isValid = () =>{
-  return (
-    email && password.length >= 8 ? true :false
-  ) 
- }
+  const PasswordErr = memo(() => (
+    <p className="text-white bg-red-300 rounded-xl justify-center px-2">{error}</p>
+  ));
+
 
  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     try{
-        login({email,password})
+        login()
         router.push('/dashboard')
     }catch(err){
        console.log(err) 
@@ -56,8 +67,8 @@ export default function Page(){
         onBlur ={()=>setIsTouched(true)}
         className="text-white rounded"
       />  
-        {password.length <= 8 && isTouched && <PasswordErr/> }
-      <button type='submit' disabled ={!isValid()} className="rounder w-full px-4 my-2 rounded-2xl border-gray-500 border-solid border-2 bg-red-500">Submit</button>
+        { isTouched && <PasswordErr/> }
+      <button type='submit' disabled ={!validateForm} className="rounder w-full px-4 my-2 rounded-2xl border-gray-500 border-solid border-2 bg-red-500">Submit</button>
      </form>
     </div>
    </div> 

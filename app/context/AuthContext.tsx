@@ -1,73 +1,52 @@
 'use client'
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// D types
-
-
-export type User = {
-
-    email : string ,
-    password : string ,
-}
-
+// Data types
 export interface AuthState {
   isAuthenticated: boolean;
-  user: User ,
-  login ?:(User:User)=> void,
-  logout ?:()=> void
+  jwtToken : string;
+  login ?:()=> void;
+  logout ?: ()=>void;
 }
 
+const AuthContext = createContext<AuthState>({ isAuthenticated: false, jwtToken : '' });
 
-const AuthContext = createContext<AuthState>({ isAuthenticated: false, user: 
-    { 
-      email : "",
-      password : "",
-    },
-});
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [authState, setAuthState] = useState<AuthState>({
     isAuthenticated: false,
-    user: {
-      email : "",
-      password : "",
-    },
+    jwtToken : '' 
   })
 
   useEffect(() => {
       
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('token');
     if (storedUser) {
-      setAuthState({ ...authState,isAuthenticated: true, user: JSON.parse(storedUser) });
+      setAuthState({ ...authState,isAuthenticated: true, jwtToken: JSON.parse(storedUser) });
     }
     
   }, []);
 
-  
 
-  const login = (user: User) => {
+  const login = () => {
+    const jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
     setAuthState(prevState => ({
       ...prevState,
       isAuthenticated: true,
-      user
+      jwtToken
     }));
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', JSON.stringify(jwtToken));
   };
  
 
   const logout = () => {
-    setAuthState({ isAuthenticated: false, user: {
-      email : "",
-      password : "", 
-      }
-    });
-    localStorage.removeItem('user');
+    setAuthState({ isAuthenticated: false, jwtToken :""});
+    localStorage.removeItem('token');
   };
   
   useEffect(() => {
       if(authState.isAuthenticated){
-          localStorage.setItem('user', JSON.stringify(authState.user));
+          localStorage.setItem('token', JSON.stringify(authState.jwtToken));
       }
   }, [authState]);
   
