@@ -1,10 +1,10 @@
 'use client'
 import Link from 'next/link';
-import { useAuth } from './context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function Header(){
 
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { logout } = useAuth();
 
   return (
@@ -24,7 +24,7 @@ export default function Header(){
       :
       <>
         <div className="flex gap-4">
-          <span>welcome {user?.email}</span>
+          <span>welcome</span>
           <button onClick={logout}>logout</button>
         </div>
       </>

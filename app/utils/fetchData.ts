@@ -4,9 +4,9 @@ dotenv.config()
 
 
 
-export async function fetchData(email : string , password : string){
+export async function fetchData(){
   try{
-      const response : AxiosResponse = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,{email,password});
+      const response : AxiosResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
       return response
     }catch(error: unknown){
       console.log(error);

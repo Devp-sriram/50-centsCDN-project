@@ -11,7 +11,7 @@ export default function Page(){
  const [error,setError] = useState('');
 
   const router = useRouter();
-  const { login } = useAuth() 
+  const { login } = useAuth(); 
  
 
   const validateForm = useMemo(() => {
