@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+
+// hooks
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 
@@ -16,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Employee-mgmt",
-  description: "app for manageing employees",
+  title: "dynamic dash",
+  description: "a dynamic dashboad",
 };
 
 export default function RootLayout({
@@ -27,15 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-          <AuthProvider>
-            <main>
-              <Header/>
-              {children}
-            </main>
-          </AuthProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
+        <AuthProvider>
+          <main>
+            <Header/>
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );

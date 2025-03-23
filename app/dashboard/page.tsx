@@ -1,19 +1,27 @@
 'use client'
+// hooks
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
-import Card,{ card } from '../components/Card';
+// fetch fn
 import { fetchData } from '../utils/fetchData';
+// ui components
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "../components/app-sidebar"
+import Card,{ card } from '../components/Card';
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { AlertTriangle } from "lucide-react"
 
 export default function Page() {
-  const router = useRouter();
-  const { isAuthenticated } = useAuth();
+  // states
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     
@@ -37,7 +45,15 @@ export default function Page() {
   }, [isAuthenticated]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error?.message}</div>;
+  if (error) return( 
+          <Alert variant="destructive" className="mt-2">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>
+                  {error}
+            </AlertDescription>
+          </Alert>
+  )
+;
 
   return (
     <>
