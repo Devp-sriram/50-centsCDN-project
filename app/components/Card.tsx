@@ -5,11 +5,12 @@ CardHeader,
 CardTitle,
 } from "@/components/ui/card"
 
-interface Card{
+export interface card{
+  id?:number;
   title : string;
   body : string;
 }
-export default function card({title , body}:Card){
+export default function card({title , body}:card){
   return (
     <div>
     <Card className="w-full h-full border-2 border-black border-solid">
