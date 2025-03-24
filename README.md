@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dynamic Dashboard with Authentication
+
+![Dashboard Preview](public/screenshot.png) <!-- Add a screenshot if available -->
+
+A fully functional dashboard with JWT authentication, API data fetching, and responsive design built with Next.js and Tailwind CSS.
+
+## Features
+
+- 🔒 JWT Authentication (Login/Logout)
+- 📊 Dynamic data fetching from JSONPlaceholder API
+- 🔍 Search and filter functionality
+- 📱 Fully responsive layout
+- 🔄 Client-side pagination
+- 🎨 Tailwind CSS styling with hover effects
+- ⚡ Optimized performance with static generation
+
+## Tech Stack
+
+- **Framework**: Next.js (Pages Router)
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Authentication**: Mock JWT with localStorage
+- **API**: JSONPlaceholder
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js v18+
+- npm v9+
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/dynamic-dashboard.git
+Navigate to project directory:
 
 ```bash
+Copy
+cd dynamic-dashboard
+Install dependencies:
+```
+```
+```
+```bash
+Copy
+npm install
+Running the App
+Start development server:
+```
+```bash
+Copy
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Open your browser at:
+```
+```bash
+Copy
+http://localhost:3000
+Build for Production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+Copy
+npm run build && npm start
+Project Structure
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+Copy
+.
+├── components/            # Reusable UI components
+├── context/               # Auth context provider
+├── pages
+│   ├── _app.tsx
+│   ├── dashboard.tsx
+│   ├── _document.tsx
+│   ├── index.tsx
+│   └── login.tsx
+         # Login page
+├── public/                # Static assets
+├── styles/                # Global styles
+├── utils/                 # Helper functions
+└── types/                 # TypeScript types
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+Key Implementation Details
+Authentication: JWT token stored in localStorage with route protection
 
-## Learn More
+Data Fetching: getStaticProps for initial data with client-side filtering
 
-To learn more about Next.js, take a look at the following resources:
+Pagination: 5 items per page with dynamic controls
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Error Handling: Graceful error states for API failures
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Responsive Design: Mobile-first Tailwind implementation
 
-## Deploy on Vercel
+Usage Instructions
+Login Page:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Enter any email (valid format required)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Password must be at least 6 characters
+
+Mock token will be generated on successful login
+
+Dashboard:
+
+Displays paginated API data
+
+Search by title or ID
+
+Click logout in header to end session
+
+Deployment
+Deployed on Vercel:
+Vercel
+
+Future Improvements
+Add dark mode toggle
+
+Implement real backend API
+
+Add user profile section
+
+Implement data caching
+
+Credits
+Built with ❤️ by sriram
+https://www.linkedin.com/in/devp-sriram/
+
+
