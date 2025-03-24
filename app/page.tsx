@@ -4,7 +4,7 @@ export default function Home() {
 
   return (
      <div className="min-h-screen flex flex-col justify-center items-center">
-      <h1 className="text-4xl font-bold white border-gray-500">Welcome to the employee management app</h1>
+      <h1 className="text-4xl font-bold white border-gray-500">Welcome to dynamic dashboard</h1>
       <div className="py-12">
         <Link
           href="/login"
