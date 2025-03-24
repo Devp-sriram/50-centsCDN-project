@@ -5,7 +5,7 @@ dotenv.config()
 export async function fetchData(){
   try{
       const response : AxiosResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
-      return response
+      return response.data
   }catch(error: unknown){
       console.log(error);
   }

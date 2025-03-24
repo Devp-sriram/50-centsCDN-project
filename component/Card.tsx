@@ -6,9 +6,10 @@ CardTitle,
 } from "@/components/ui/card"
 
 export interface card{
-  id?:number;
-  title : string;
-  body : string;
+  id ?: number;
+  userId?: number;
+  title: string;
+  body: string;
 }
 export default function card({title , body}:card){
   return (
