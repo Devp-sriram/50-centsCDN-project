@@ -67,7 +67,7 @@ export default function Page(){
         placeholder="example@mail.com"
         value={email} 
         onChange={(e)=>setEmail(e.target.value)}
-        className="text-black rounded "
+        className="text-primary rounded "
       />
       <Label>Password</Label>
       <Input 

@@ -1,4 +1,5 @@
 // pages/_app.tsx
+import { ThemeProvider } from '../component/ThemeProvider'
 import type { AppProps } from 'next/app'
 import localFont from 'next/font/local'
 import '../styles/globals.css'
@@ -21,10 +22,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <AuthProvider>
-        <main>
-          <Header />
-          <Component {...pageProps} />
-        </main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <main>
+            <Header />
+            <Component {...pageProps} />
+          </main>
+        </ThemeProvider>
       </AuthProvider>
     </div>
   )

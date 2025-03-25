@@ -1,4 +1,5 @@
 import { Home, Inbox , Settings } from "lucide-react"
+import { ThemeToggle } from './ThemeToggle'
 
 import {
   Sidebar,
@@ -36,6 +37,7 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
+              <ThemeToggle/>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
