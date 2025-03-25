@@ -41,7 +41,7 @@ export default function PostsClient({ initialPosts }:ClientOpsPageProps) {
           <input
             type="text"
             placeholder="Search posts..."
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded ml-10 md:ml-0"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);

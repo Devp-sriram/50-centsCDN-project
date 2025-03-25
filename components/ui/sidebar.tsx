@@ -266,7 +266,15 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon"
-      className={cn("size-7", className)}
+      className={cn(
+        "fixed left-2 top-13 md:top-1 z-50", // Floating position
+        "rounded-full p-2", // Circular shape
+        "bg-background/80 backdrop-blur-sm", // Glass-like effect
+        "border shadow-sm hover:bg-accent", // Subtle border and hover
+        "transition-all duration-200", // Smooth animations
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring", // Accessibility
+        className
+      )}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
