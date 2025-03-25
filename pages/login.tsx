@@ -58,8 +58,8 @@ export default function Page(){
 }
 
   return (
-   <Card className="w-full h-full p-10 flex justify-center items-center">
-    <Card className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 justify-center items-center border-gray-500 border-solid border-2">
+   <div className="h-full flex justify-center items-center">
+    <Card className="m-10 sm:m-14 md:m-24 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2 justify-center items-center border-gray-500 border-solid border-2">
      <form onSubmit={handleSubmit} className="flex flex-col w-full gap-2">
       <Label>Email</Label>
       <Input 
@@ -76,7 +76,7 @@ export default function Page(){
         value={password} 
         onChange={(e)=>setPassword(e.target.value)}
         onBlur ={()=>setIsTouched(true)}
-        className="text-black rounded"
+        className="text-primary rounded"
       />  
         { isTouched &&
           <Alert variant="destructive" className="mt-2">
@@ -89,6 +89,6 @@ export default function Page(){
       <Button type='submit' disabled ={!validateForm} className="rounder w-full px-4 my-2 rounded-2xl border-gray-500 border-solid border-2 bg-red-600">Submit</Button>
      </form>
     </Card>
-   </Card> 
+   </div> 
   )
 }
